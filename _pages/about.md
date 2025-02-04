@@ -1,4 +1,4 @@
-zsh: sure you want to delete the only file in /Users/mathinvariant/temp-website/assets/video [yn]? ---
+---
 layout: about
 title: about
 permalink: /
