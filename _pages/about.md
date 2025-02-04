@@ -13,9 +13,10 @@ profile:
     <p>400 Dowman Dr</p>
     <p>Atlanta, GA 30322</p>
 
-news: true # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+news: false
+selected_papers: false
+social: true
+
 ---
 
 I am a PhD student in Computational Mathematics at Emory University. My research interests lie at the intersection of artificial intelligence, quantitative finance, and blockchain technology. I'm particularly focused on the applications of Large Language Models (LLMs) in financial markets and cryptocurrency ecosystems.
