@@ -185,6 +185,17 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 
 # -----------------------------------------------------------------------------
+# Plugins
+# -----------------------------------------------------------------------------
+
+plugins:
+  - jekyll-archives
+  - jekyll-feed
+  - jekyll-paginate-v2
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# -----------------------------------------------------------------------------
 # Jekyll settings
 # -----------------------------------------------------------------------------
 
@@ -226,25 +237,6 @@ exclude:
 keep_files:
   - CNAME
   - .nojekyll
-
-# Plug-ins
-plugins:
-  - jekyll-archives
-  - jekyll-email-protect
-  - jekyll-feed
-  - jekyll-get-json
-  - jekyll-imagemagick
-  - jekyll-jupyter-notebook
-  - jekyll-link-attributes
-  - jekyll-minifier
-  - jekyll-paginate-v2
-  - jekyll-regex-replace
-  - jekyll/scholar
-  - jekyll-sitemap
-  - jekyll-tabs
-  - jekyll-toc
-  - jekyll-twitter-plugin
-  - jemoji
 
 # Sitemap settings
 defaults:
@@ -622,3 +614,30 @@ jsonresume:
   - languages
   - interests
   - references
+
+permalink: /blog/:year/:title/
+future: true
+
+# Pagination
+pagination:
+  enabled: true
+  per_page: 8
+  permalink: /page/:num/
+  title: ':title - page :num'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+
+# Collections
+collections:
+  news:
+    defaults:
+      layout: post
+    output: true
+    permalink: /news/:path/
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+news_scrollable: true # adds a vertical scroll bar if there are more than 3 news items
+news_limit: 5 # leave blank to include all the news in the _news folder
