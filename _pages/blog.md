@@ -19,29 +19,14 @@ pagination:
 ---
 
 <div class="post-list">
-  {% if page.pagination.enabled %}
-    {% assign postlist = paginator.posts %}
-  {% else %}
-    {% assign postlist = site.posts %}
-  {% endif %}
-
-  {% for post in postlist %}
+  {% for post in paginator.posts %}
   <div class="post-preview">
     <div class="post-meta">
       <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
     </div>
 
     <div class="post-title">
-      {% if post.redirect == blank %}
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      {% elsif post.redirect contains '://' %}
-        <a href="{{ post.redirect }}" target="_blank">{{ post.title }}</a>
-        <svg width="2rem" height="2rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      {% else %}
-        <a href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
-      {% endif %}
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
     </div>
 
     <div class="post-description">
