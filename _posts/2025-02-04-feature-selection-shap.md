@@ -150,28 +150,25 @@ class SHAPFeatureSelector:
                 self._generate_synthetic_feature(feat_data, n_samples)
                 for _ in range(self.n_synthetic)
             ])
-            
+
             # Combine real and synthetic features
             X_augmented = np.column_stack([feat_data.reshape(-1, 1), synthetic_features])
             shap_values = np.abs(self._compute_shap_values(X_augmented, y))
-            
+
             real_importance = np.mean(shap_values[:, 0])
             synthetic_importances = np.mean(shap_values[:, 1:], axis=0)
-            
+
             # Compute empirical p-value
-            p_value = (np.sum(synthetic_importances >= real_importance) + 1) / (self.n_synthetic + 1)
-            
-            # Selection criterion
-            threshold = np.percentile(synthetic_importances, self.threshold_quantile * 100)
-            selected = real_importance > threshold
-            
+            p_value = np.mean(synthetic_importances >= real_importance)
+
+            # Store results
             results[feat_name] = FeatureImportance(
                 shap_value=real_importance,
                 synthetic_values=synthetic_importances,
                 p_value=p_value,
-                selected=selected
+                selected=p_value < (1 - self.threshold_quantile)
             )
-            
+
         return results
 ```
 
