@@ -13,19 +13,22 @@ featured: true
 # Advanced Feature Selection Using SHAP Values and Synthetic Baselines: Theory, Practice, and Implementation
 
 ## Abstract
+
 We present a novel approach to feature selection that combines SHAP (SHapley Additive exPlanations) values with synthetic baseline features. Our method generates controlled noise features to establish empirical null distributions, enabling robust significance testing for feature importance. We provide rigorous mathematical foundations, connecting our approach to statistical learning theory, permutation tests, and modern feature selection techniques. The method is particularly effective for time-series data where traditional cross-validation may be problematic. We complement theoretical results with practical implementation details and extensive code examples.
 
 ## Introduction
+
 Feature selection remains a critical challenge in machine learning, particularly for time-series data where features often exhibit complex dependencies. We introduce a method that leverages SHAP values and synthetic features to provide a robust framework for feature selection. Our approach draws inspiration from multiple domains:
 
-* Statistical hypothesis testing and empirical null distributions
-* Permutation importance in random forests
-* Shadow features in the Boruta algorithm
-* Knockoff filters in high-dimensional statistics
+- Statistical hypothesis testing and empirical null distributions
+- Permutation importance in random forests
+- Shadow features in the Boruta algorithm
+- Knockoff filters in high-dimensional statistics
 
 ## Theoretical Foundations
 
 ### Problem Setting and Assumptions
+
 Consider a supervised learning problem with feature space $$\mathcal{X} \subset \mathbb{R}^p$$ and target space $$\mathcal{Y} \subset \mathbb{R}$$. Let $$(X, Y)$$ be random variables on $$\mathcal{X} \times \mathcal{Y}$$ with joint distribution $$P_{XY}$$. We observe $$n$$ i.i.d. samples $$\{(x_i, y_i)\}_{i=1}^n$$.
 
 **Definition** (Feature Relevance)  
@@ -58,6 +61,7 @@ $$
 with $$\Sigma \succ 0$$ (positive definite).
 
 ### SHAP Values and Feature Importance
+
 Consider a prediction function $$f: \mathcal{X} \to \mathbb{R}$$ and a feature vector $$x = (x_1, \ldots, x_p)$$. The SHAP value for feature $$i$$ is defined as:
 
 $$
@@ -106,7 +110,7 @@ class SHAPFeatureSelector:
         self.threshold_quantile = threshold_quantile
         self.random_state = random_state
         self.rng = np.random.RandomState(random_state)
-        
+
     def _generate_synthetic_feature(
         self,
         feature_data: np.ndarray,
@@ -117,7 +121,7 @@ class SHAPFeatureSelector:
         kde = KernelDensity(kernel='gaussian', bandwidth='scott')
         kde.fit(feature_data.reshape(-1, 1))
         return kde.sample(n_samples, random_state=self.rng).reshape(-1)
-    
+
     def _compute_shap_values(
         self,
         X: np.ndarray,
@@ -130,7 +134,7 @@ class SHAPFeatureSelector:
             model, X, feature_perturbation="interventional"
         )
         return explainer.shap_values(X)
-    
+
     def select_features(
         self,
         X: pd.DataFrame,
@@ -140,10 +144,10 @@ class SHAPFeatureSelector:
         """Main feature selection method"""
         if feature_names is None:
             feature_names = X.columns.tolist()
-            
+
         results = {}
         n_samples = len(X)
-        
+
         for feat_name in feature_names:
             feat_data = X[feat_name].values
             synthetic_features = np.column_stack([
@@ -173,6 +177,7 @@ class SHAPFeatureSelector:
 ```
 
 ## Conclusion
+
 We have presented a comprehensive framework for feature selection that combines the interpretability of SHAP values with the robustness of synthetic features. Our theoretical results provide guarantees under various conditions, while the implementation is efficient and practical for real-world applications.
 
 {% endraw %}

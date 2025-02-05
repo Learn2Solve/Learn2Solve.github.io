@@ -16,7 +16,6 @@ profile:
 news: false
 selected_papers: false
 social: true
-
 ---
 
 I am a PhD student in Computational Mathematics at Emory University. My research interests lie at the intersection of artificial intelligence, quantitative finance, and blockchain technology. I'm particularly focused on the applications of Large Language Models (LLMs) in financial markets and cryptocurrency ecosystems.
@@ -24,6 +23,7 @@ I am a PhD student in Computational Mathematics at Emory University. My research
 Currently, I am exploring innovative approaches to leverage AI technologies in quantitative trading strategies and decentralized finance (DeFi) applications. My work aims to bridge the gap between cutting-edge AI research and practical applications in the financial technology sector.
 
 ## Research Interests
+
 - Large Language Models (LLMs) and their applications
 - Quantitative Finance & Trading Strategies
 - Cryptocurrency & Blockchain Technology

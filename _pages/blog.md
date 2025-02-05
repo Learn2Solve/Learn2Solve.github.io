@@ -13,7 +13,7 @@ pagination:
   per_page: 5
   sort_field: date
   sort_reverse: true
-  trail: 
+  trail:
     before: 1
     after: 1
 ---
@@ -32,11 +32,13 @@ pagination:
     <div class="post-description">
       {{ post.description }}
     </div>
+
   </div>
   {% endfor %}
 </div>
 
 {% if paginator.total_pages > 1 %}
+
 <div class="pagination">
   {% include pagination.liquid %}
 </div>
